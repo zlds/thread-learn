@@ -1,5 +1,9 @@
 package com.example.lockdemo;
 
+import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author: hanchaowei
  * @date 2022/11/19
@@ -7,6 +11,40 @@ package com.example.lockdemo;
  */
 
 public class LockTest {
+	private ArrayList<Integer> arrayList = new ArrayList<>();
+
+	private void insert(Thread t) {
+		Lock lock = new ReentrantLock();
+		lock.lock();
+		try {
+			System.out.println(t.getName() + "得到了锁");
+			for (int i = 0; i < 5; i++) {
+				arrayList.add(i);
+			}
+		} finally {
+			System.out.println(t.getName() + "释放了锁");
+			lock.unlock();
+		}
+	}
+
+	public static void main(String[] args) {
+		LockTest lockTest = new LockTest();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				lockTest.insert(Thread.currentThread());
+			}
+		}).start();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				lockTest.insert(Thread.currentThread());
+			}
+		}).start();
+	}
+
 
 
 
