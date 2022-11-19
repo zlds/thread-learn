@@ -17,8 +17,8 @@ public class LockInterruptiblyTest {
 		try {
 			System.out.println(t.getName() + "得到了锁");
 			long startTime = System.currentTimeMillis();
-			for ( ; ; ) {
-				if (System.currentTimeMillis() - startTime >= Integer.MAX_VALUE ) {
+			for (; ; ) {
+				if (System.currentTimeMillis() - startTime >= Integer.MAX_VALUE) {
 					break;
 				}
 			}
@@ -42,14 +42,6 @@ public class LockInterruptiblyTest {
 		}
 		t2.interrupt();
 	}
-
-
-
-
-
-
-
-
 
 
 }

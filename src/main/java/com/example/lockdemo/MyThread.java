@@ -7,7 +7,7 @@ package com.example.lockdemo;
  */
 
 public class MyThread extends Thread {
-	private LockInterruptiblyTest  lockInterruptiblyTest = null;
+	private LockInterruptiblyTest lockInterruptiblyTest = null;
 
 	public MyThread(LockInterruptiblyTest lockInterruptiblyTest) {
 		this.lockInterruptiblyTest = lockInterruptiblyTest;
