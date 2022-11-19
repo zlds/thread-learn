@@ -12,9 +12,11 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class LockTest {
 	private ArrayList<Integer> arrayList = new ArrayList<>();
+	// 声明全局变量，每个线程使用同一把锁
+	private Lock lock = new ReentrantLock();
 
 	private void insert(Thread t) {
-		Lock lock = new ReentrantLock();
+
 		lock.lock();
 		try {
 			System.out.println(t.getName() + "得到了锁");
